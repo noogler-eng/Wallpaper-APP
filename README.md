@@ -48,3 +48,26 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+- app (real project files)
+- assets (fonts / images)
+- components (user defined components)
+- constants ()
+- hooks (getting value ...)
+- for ios we need xcode
+- for android we need android emulator...
+- we can also do this using expo app....
+
+- 2 ways for navigation in react-native
+- 1. react-navigation
+- 2. expo router (file based routing..., under the hood it is react-navigation) 
+
+- navigation part ...........
+- what we have to do.....
+- bottom tabs
+- toptabs in the first tab
+- bottomsheet in the second tab
+- a stack push in the third tab
+
+- 
