@@ -4,11 +4,10 @@ import { Image, Text, View } from "react-native";
 import headerImage from "@/assets/images/headerImage.png";
 
 import { UseWallpaper, Wallpaper } from "@/hooks/useWallpaper";
-import ImageCard from "@/components/ImageCard";
-import { FlatList } from "react-native-gesture-handler";
 import { useState } from "react";
 import BottomSheetComponent from "@/components/BottomSheet";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SplitView from "@/components/SplitView";
 
 export default function Explore() {
   const wallpapers = UseWallpaper();
@@ -36,28 +35,10 @@ export default function Explore() {
           <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 12 }}>
             Explore Wallpapers
           </Text>
-
-          <View
-            style={{
-              flexDirection: "row",
-              flexWrap: "wrap",
-              marginBottom: 8,
-            }}
-          >
-            <FlatList
-              data={wallpapers}
-              keyExtractor={(_, index) => index.toString()}
-              renderItem={({ item }) => (
-                <ImageCard
-                  wallpaperImg={item}
-                  onPress={() => {
-                    setSelectedWallpaper(item);
-                  }}
-                />
-              )}
-              showsVerticalScrollIndicator={false}
-            />
-          </View>
+          <SplitView
+            wallpapers={wallpapers}
+            setSelectedWallpaper={setSelectedWallpaper}
+          />
         </View>
       </ParallaxScrollView>
       {selectedWallpaper && (
