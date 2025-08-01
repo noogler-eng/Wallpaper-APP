@@ -72,16 +72,32 @@ export default function BottomSheetScreen({
             </View>
 
             {/* this is download button  */}
-            <Pressable>
+            <Pressable
+              style={{
+                backgroundColor: "black",
+                padding: 10,
+                borderRadius: 8,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 10,
+                width: "60%",
+              }}
+            >
+              <Ionicons
+                name="download"
+                style={{
+                  color: "white",
+                }}
+                size={20}
+              />
               <Text
                 style={{
                   color: "white",
                   fontSize: 18,
                   fontWeight: "bold",
                   textAlign: "center",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
-                  padding: 10,
-                  borderRadius: 8,
                 }}
                 onPress={() => {
                   console.log("Downloading image:", image.url);
