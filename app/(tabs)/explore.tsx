@@ -46,7 +46,7 @@ export default function Explore() {
           >
             <FlatList
               data={wallpapers}
-              keyExtractor={(index) => index.toString()}
+              keyExtractor={(_, index) => index.toString()}
               renderItem={({ item }) => (
                 <ImageCard
                   wallpaperImg={item}

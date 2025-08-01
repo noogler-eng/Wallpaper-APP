@@ -1,7 +1,8 @@
 import React, { useCallback, useRef, useMemo } from "react";
-import { Text, StyleSheet, View, Image, Button } from "react-native";
+import { Text, StyleSheet, View, Image, Button, Pressable } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { Wallpaper } from "@/hooks/useWallpaper";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function BottomSheetScreen({
   onClose,
@@ -28,6 +29,7 @@ export default function BottomSheetScreen({
       enablePanDownToClose={true}
       // disable the handle indicator
       handleIndicatorStyle={{ height: 0 }}
+      handleStyle={{ display: "none" }}
     >
       <BottomSheetView style={styles.sheetContent}>
         {image?.url && (
@@ -35,12 +37,12 @@ export default function BottomSheetScreen({
             style={{
               width: "100%",
               height: 600,
-              marginTop: 20,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              borderRadius: 24,
               gap: 10,
-              padding: 20,
+              paddingTop: 10,
             }}
           >
             <Image
@@ -49,15 +51,45 @@ export default function BottomSheetScreen({
                 width: "100%",
                 height: "100%",
                 resizeMode: "cover",
-                borderRadius: 8,
+                borderRadius: 20,
               }}
             />
-            <Button
-              title={"download image"}
-              onPress={() => {
-                console.log("Downloading image:", image.url);
-              }}
-            />
+            <View style={styles.topbar}>
+              <Ionicons
+                name="close"
+                size={24}
+                onPress={onClose}
+                style={{ color: "white" }}
+              />
+              <Ionicons
+                name="share"
+                size={24}
+                onPress={() => {
+                  console.log("Sharing image:", image.url);
+                }}
+                style={{ color: "white" }}
+              />
+            </View>
+
+            {/* this is download button  */}
+            <Pressable>
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 18,
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  padding: 10,
+                  borderRadius: 8,
+                }}
+                onPress={() => {
+                  console.log("Downloading image:", image.url);
+                }}
+              >
+                {"download"}
+              </Text>
+            </Pressable>
           </View>
         )}
       </BottomSheetView>
@@ -76,10 +108,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: "100%",
   },
+  topbar: {
+    position: "absolute",
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingInline: 10,
+    top: 0,
+    left: 0,
+  },
   sheetContent: {
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
+    borderRadius: 20,
+    paddingTop: 10,
   },
   sheetText: {
     fontSize: 18,
